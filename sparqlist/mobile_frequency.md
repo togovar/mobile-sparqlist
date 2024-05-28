@@ -151,11 +151,11 @@ ORDER BY ?source
     variant_recoder.results = [];
   } else {
     variant_recoder.results = frequency.results.bindings.map((d) => ({
-      source: d.source ? d.source.value : "",
-      filter: d.filter ? d.filter.value : "",
-      quality: d.quality ? d.quality.value : "",
-      info_label: d.info_label ? d.info_label.value : "",
-      info_value: d.info_value ? d.info_value.value : ""
+      source: d.source ? d.source.value : null,
+      filter: d.filter ? d.filter.value : null,
+      quality: d.quality ? Number(d.quality.value) : null,
+      info_label: d.info_label ? d.info_label.value : null,
+      info_value: d.info_value ? Number(d.info_value.value) : null
     }));
   }
 
