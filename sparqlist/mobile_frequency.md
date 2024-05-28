@@ -7,7 +7,7 @@ Report variant frequencies by populations in TogoVar specified by a Variant ID l
 * `variant_id` Variant ID
   * default:
   * dbSNP rsID Example: 
-    * [rs671](/sparqlist/api/mobile_clinvar?variant_id=rs671)
+    * [rs671](/sparqlist/api/mobile_frequency?variant_id=rs671)
   * HGVSg (GRCh38) Example: 
     * [NC_000012.12:g.111803962G>A](/sparqlist/api/mobile_frequency?variant_id=NC_000012.12:g.111803962G>A)
     * [Chr12(GRCh38):g.111803962G>A](/sparqlist/api/mobile_frequency?variant_id=Chr12(GRCh38):g.111803962G>A)
