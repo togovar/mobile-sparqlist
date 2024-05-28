@@ -155,12 +155,32 @@ ORDER BY ?title ?review_status ?interpretation DESC(?last_evaluated) ?condition
     variant_recoder.results = clinvar.results.bindings.map((d) => ({
       title: d.title.value,
       review_status: d.review_status.value,
+      review_status_stars: (function() {
+        switch(d.review_status.value) {
+          case "no assertion provided":
+            return 0;
+          case "no assertion criteria provided":
+            return 0;
+          case "no assertion for the individual variant":
+            return 0;
+          case "criteria provided, single submitter":
+            return 1;
+          case "criteria provided, conflicting interpretations":
+            return 1;
+          case "criteria provided, multiple submitters, no conflicts":
+            return 2;
+          case "reviewed by expert panel":
+            return 3;
+          case "practice guideline":
+            return 4;
+          default:
+        }
+      })(),
       interpretation: d.interpretation.value,
       last_evaluated: d.last_evaluated.value,
       condition: d.condition.value,
       medgen: d.medgen.value,
-      clinvar: d.clinvar.value,
-      vcv: d.vcv.value
+      clinvar: d.clinvar.value
     }));
   }
 
