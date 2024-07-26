@@ -28,7 +28,7 @@ services:
   stanza:
     build: docker/node
     volumes:
-     - ../mobile-stanza:/usr/src/app
+     - ./mobile-stanza:/usr/src/app
 
   sparqlist:
     image: ghcr.io/dbcls/sparqlist:snapshot-fffa8c9
