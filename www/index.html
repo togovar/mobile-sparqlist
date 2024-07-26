@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/normalize.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+
+      html {
+        font-size: 10px;
+      }
+
+      body {
+        background-color: #eaeae9;
+        margin: 0;
+        font-family: Roboto Condensed, sans-serif;
+      }
+
+      main {
+        padding: 20px;
+        max-width: 800px;
+      }
+
+      section {
+        > h2 {
+          font-size: 2rem;
+          line-height: 1.2;
+          margin-bottom: 0.2rem;
+        }
+
+        > .stanza {
+          background-color: white;
+          box-shadow: 0 0.2rem 0.2rem #0003;
+          display: block;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <section>
+        <h2>Clinical significance</h2>
+        <script
+          type="module"
+          src="/mobile-clinical-significance.js"
+          async
+        ></script>
+        <togostanza-mobile-clinical-significance
+          class="stanza"
+          variant_id=""
+          sparqlist="/sparqlist"
+        ></togostanza-mobile-clinical-significance>
+      </section>
+      <section>
+        <h2>Frequency</h2>
+        <script
+          type="module"
+          src="/mobile-frequency.js"
+          async
+        ></script>
+        <togostanza-mobile-frequency
+          class="stanza"
+          variant_id=""
+          urlBase="https://grch38.togovar.org"
+          sparqlist="/sparqlist"
+        ></togostanza-mobile-frequency>
+      </section>
+    </main>
+
+    <script>
+      // get url query
+      const urlParams = new URLSearchParams(window.location.search);
+      const variant_id = urlParams.get("id");
+      // apply variant id to stanzas
+      document.querySelectorAll(".stanza").forEach((stanza) => {
+        stanza.setAttribute("variant_id", variant_id);
+      });
+    </script>
+  </body>
+</html>

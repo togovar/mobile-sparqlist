@@ -14,12 +14,21 @@ services:
       TZ: Asia/Tokyo
     volumes:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./www:/var/www
     ports:
       - ${NGINX_PORT:-80}:80
     depends_on:
       - sparqlist
+      - stanza
     logging: *default-logging
     restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  stanza:
+    build: docker/node
+    volumes:
+     - ../mobile-stanza:/usr/src/app
 
   sparqlist:
     image: ghcr.io/dbcls/sparqlist:snapshot-fffa8c9
