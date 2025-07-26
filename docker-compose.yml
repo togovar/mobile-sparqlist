@@ -26,9 +26,12 @@ services:
       - "host.docker.internal:host-gateway"
 
   stanza:
-    build: docker/node
+    build:
+      context: ./mobile-stanza
+      dockerfile: ../docker/node/Dockerfile
     volumes:
      - ./mobile-stanza:/usr/src/app
+    restart: always
 
   sparqlist:
     image: ghcr.io/dbcls/sparqlist:snapshot-fffa8c9
