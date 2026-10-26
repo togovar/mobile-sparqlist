@@ -1,14 +1,18 @@
-# ベースイメージとしてNode.jsを使用
-FROM node:18
+# Supported LTS release. Pin the major line so security patch releases are
+# picked up by regular image rebuilds.
+FROM node:24-bookworm-slim
 
 # 作業ディレクトリを設定
 WORKDIR /usr/src/app
 
 # package.json と package-lock.json をコピー
-COPY package*.json ./
+COPY --chown=node:node package*.json ./
 
 # 依存関係をインストール
-RUN npm install
+RUN npm ci --omit=dev --ignore-scripts \
+    && npm cache clean --force
+
+USER node
 
 # ポート3000を開放
 EXPOSE 8080
