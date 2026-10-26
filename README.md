@@ -9,8 +9,8 @@ See descriptions in the SPARQLet markdown files for details.
 $ docker-compose up -d
 $ docker-compose ps
 NAME                           IMAGE                                      COMMAND                                          SERVICE     CREATED         STATUS         PORTS
-mobile-sparqlist-nginx-1       nginx:1.21                                 "/docker-entrypoint.sh nginx -g 'daemon off;'"   nginx       5 seconds ago   Up 4 seconds   0.0.0.0:12082->80/tcp
-mobile-sparqlist-sparqlist-1   ghcr.io/dbcls/sparqlist:snapshot-fffa8c9   "docker-entrypoint.sh /bin/sh -c 'npm start'"    sparqlist   5 seconds ago   Up 4 seconds
+mobile-sparqlist-nginx-1       nginx:1.30.6-alpine                        "/docker-entrypoint.sh nginx -g 'daemon off;'"   nginx       5 seconds ago   Up 4 seconds   0.0.0.0:12082->80/tcp
+mobile-sparqlist-sparqlist-1   ghcr.io/dbcls/sparqlist:snapshot-1f5cd4c   "docker-entrypoint.sh /bin/sh -c 'npm start'"    sparqlist   5 seconds ago   Up 4 seconds
 dbcls3284:mobile-sparqlist mitsuhashi$
 $ docker-compose down
 ```
@@ -25,7 +25,8 @@ An .env file is required to be located at the same directory as docker-compose.y
 NGINX_PORT=<<port number to be filled in>>
 
 # SPARQList
-SPARQLIST_ADMIN_PASSWORD=<<to be filled in>>
+# Required. Use a long, randomly generated value; startup fails if omitted.
+SPARQLIST_ADMIN_PASSWORD=<<strong random password to be filled in>>
 
 ## Default SPARQL endpoint for development
 SPARQLIST_TOGOVAR_SPARQL=https://grch38.togovar.org/sparql
